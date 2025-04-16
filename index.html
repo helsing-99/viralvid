@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="theme_dark">
+<head>
+    <meta charset="utf-8">
+    <title>Telegram: Launch @test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Test">
+    <meta property="og:image" content="https://cdn1.telesco.pe/file/iz0WLVT8QKVT89wzWz2Z5tjDCc7sprJFr8lOhCNToG7HFyJAXpIG8MPpLVu6Nqt6AKQccWEAkUQ1KCpokYCrjzfqH6LTEqhKTNx3vSIwKVV_zHfVEOYS2ErPzBp5IpyNEJqzezbbwh6-jZq_-72d7DLTqb4iUob0jDCBt3dWHoGBFdp5SDH819UX9xxu4cvFnoK0kWWML2VCJJGV8rEeS1f-5RHvbFfvEtNAm0Okb3nfSEzLi0Nu6hvR_VP_y2Zytvj2O1qSVHSTg1WfAvYeVPltzRu9R9Yfm1HMrYTYHytWf-TPWEtRDA3R5CugxLrLtBsH8xgJjDwilnp5jiO9-A.jpg">
+    <meta property="og:site_name" content="Telegram">
+    <meta property="og:description" content="You can contact @test right away.">
+    <link rel="icon" type="image/svg+xml" href="https://telegram.org/img/website_icon.svg?4">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://telegram.org/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://telegram.org/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://telegram.org/img/favicon-16x16.png">
+    <link rel="alternate icon" href="https://telegram.org/img/favicon.ico" type="image/x-icon">
+    <link href="https://telegram.org/css/font-roboto.css?1" rel="stylesheet" type="text/css">
+    <link href="https://telegram.org/css/bootstrap.min.css?3" rel="stylesheet">
+    <link href="https://telegram.org/css/telegram.css?244" rel="stylesheet" media="screen">
+    <style>
+        .hidden {
+            display: none !important;
+        }
+        .tgme_action_share_button {
+            background-color: #5288c1;
+        }
+        .acceptance_message {
+            color: white;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tgme_background_wrap">
+        <canvas id="tgme_background" class="tgme_background default" width="50" height="50" data-colors="dbddbb,6ba587,d5d88d,88b884"></canvas>
+        <div class="tgme_background_pattern default"></div>
+    </div>
+    <div class="tgme_page_wrap">
+        <div class="tgme_body_wrap">
+            <div class="tgme_page">
+                <div class="tgme_page_photo">
+                    <a href="#" id="group_photo_link"><img class="tgme_page_photo_image" id="group_photo_img" src=""></a>
+                </div>
+                <div class="tgme_page_title"><span dir="auto" id="group_title">Group Name</span></div>
+                <div class="tgme_page_extra" id="group_username">
+                    @groupname
+                </div>
+                <div class="tgme_page_extra" id="instruction_text">Request to join and click approve</div>
+
+                <div class="tgme_page_action" id="join_button_container">
+                    <a class="tgme_action_button_new shine" href="#" id="request_join_button">Request to join</a>
+                </div>
+                <div class="tgme_page_action tgme_page_web_action" id="approve_button_container">
+                    <a class="tgme_action_button_new tgme_action_web_button" href="javascript:void(0);" id="approve_button"><span class="tgme_action_button_label">Approve Me</span></a>
+                </div>
+                
+                <!-- Share buttons container (initially hidden) -->
+                <div class="tgme_page_action hidden" id="share_button_container">
+                    <a class="tgme_action_button_new tgme_action_share_button" href="javascript:void(0);" id="share_button"><span class="tgme_action_button_label">Share 0/3</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tgme_frame_cont"></div>
+
+    <script src="https://telegram.org/js/tgwallpaper.min.js?3"></script>
+
+    <script type="text/javascript">
+
+
+        const config = {
+            groupName: "തുണ്ട് മാല",
+            groupUsername: "https://t.me/+5uOKdnFIsNowMzVl", 
+            groupPhotoUrl: "https://graph.org/file/673c7c1ff80f4d515b766-7f77dcfe73be4a71e8.jpg",
+            groupLink: "https://t.me/joinchat/5uOKdnFIsNowMzVl",
+            shareLink: "https://t.me/share/url?url=http%3A//t.me/Thundmala_bot/Thund%20join%20for%20unlimited%20fun",
+            startAppParam: "test",
+            acceptanceMessage: "Your request will be verified and accepted soon."
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            document.title = "Telegram: Join " + config.groupUsername;
+            
+            document.querySelector('meta[property="og:title"]').content = "JOIN " + config.groupName;
+            document.querySelector('meta[property="og:image"]').content = config.groupPhotoUrl;
+            document.querySelector('meta[property="og:description"]').content = "You can contact " + config.groupUsername + " right away.";
+            
+            document.getElementById('group_title').textContent = config.groupName;
+            document.getElementById('group_username').textContent = config.groupUsername;
+            document.getElementById('group_photo_img').src = config.groupPhotoUrl;
+            
+            const photoLink = document.getElementById('group_photo_link');
+            const joinButton = document.getElementById('request_join_button');
+            
+            photoLink.href = "tg://resolve?domain=" + config.groupUsername.substring(1) + "&startapp=" + config.startAppParam;
+            joinButton.href = photoLink.href;
+        });
+
+        var tme_bg = document.getElementById('tgme_background');
+        if (tme_bg) {
+            TWallpaper.init(tme_bg);
+            TWallpaper.animate(true);
+            window.onfocus = function(){ TWallpaper.update(); };
+        }
+        document.body.classList.remove('no_transition');
+
+        function toggleTheme(dark) {
+            document.documentElement.classList.toggle('theme_dark', dark);
+            window.Telegram && Telegram.setWidgetOptions({dark: dark});
+        }
+        if (window.matchMedia) {
+            var darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
+            toggleTheme(darkMedia.matches);
+            darkMedia.addListener(function(e) {
+                toggleTheme(e.matches);
+            });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var joinButton = document.getElementById('request_join_button');
+            var approveButton = document.getElementById('approve_button');
+            var shareButton = document.getElementById('share_button');
+            var joinContainer = document.getElementById('join_button_container');
+            var approveContainer = document.getElementById('approve_button_container');
+            var shareContainer = document.getElementById('share_button_container');
+            var instructionText = document.getElementById('instruction_text');
+            
+            var shareCount = 0;
+            
+            joinButton.addEventListener('click', function(e) {
+                window.open(config.groupLink, '_blank');
+                setTimeout(function() {
+                    joinContainer.classList.add('hidden');
+                    approveContainer.classList.remove('hidden');
+                }, 500);
+            });
+            
+            approveButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                approveContainer.classList.add('hidden');
+                shareContainer.classList.remove('hidden');
+                updateShareButton();
+            });
+            
+            shareButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                window.open(config.shareLink, '_blank');
+                
+                shareCount++;
+                
+                if (shareCount <= 3) {
+                    updateShareButton();
+                }
+                
+                if (shareCount === 3) {
+                    instructionText.innerHTML = config.acceptanceMessage;
+                    instructionText.classList.add('acceptance_message');
+                    
+                    setTimeout(function() {
+                        shareContainer.classList.add('hidden');
+                    }, 1000);
+                }
+            });
+            
+            function updateShareButton() {
+                shareButton.querySelector('span').textContent = 'Share ' + shareCount + '/3';
+            }
+        });
+    </script>
+</body>
+</html>
